@@ -78,7 +78,20 @@ const getSeniority = (data) => {
     })
 };
 
-
+const getCategory = (data) => {
+    $("#select-category").innerHTML = "";
+    $("#select-category").innerHTML = 
+    `<option value="" selected disabled>Category</option>`;
+    let category = [];
+    data.forEach((job) => {
+        if (!category.includes(job.category)) {
+            category.push(job.category);
+        };
+    }) 
+    category.forEach((category) => {
+        $("#select-category").innerHTML += `<option value="${category}">${category}</option>`
+    })
+};
 
 
 
