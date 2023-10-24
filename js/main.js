@@ -125,6 +125,31 @@ const filterCategory = (data, category) => {
     return categories
 };
 
+const applyFilters = (data) => {
+    const location = $("#select-location").value;
+    console.log(location)
+    const seniority = $("#select-seniority").value;
+    console.log(seniority)
+    const category = $("#select-category").value;
+    console.log(category)
+    let filteredJobs = data
+    
+
+    if (location !== "") {
+        console.log("1")
+        filteredJobs = filterLocation(filteredJobs, location)
+    } 
+    if (seniority !== "") {
+        console.log("2")
+        filteredJobs = filterSeniority(filteredJobs, seniority)
+    }
+    if (category !== "") {
+        console.log("3")
+        filteredJobs = filterCategory(filteredJobs, category)
+    }
+    return filteredJobs
+};
+
 
 
 
