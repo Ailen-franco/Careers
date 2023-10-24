@@ -105,6 +105,16 @@ const filterLocation = (data, country) => {
     return countries
 };
 
+const filterSeniority = (data, range) => {
+    const ranges = [];
+    data.forEach((element) => {
+        if(element.seniority.includes(range)) {
+            ranges.push(element)
+        }
+    });
+    return ranges
+};
+
 
 
 
