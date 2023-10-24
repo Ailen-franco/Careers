@@ -63,7 +63,20 @@ const getLocation = (data) => {
     })
 };
 
-
+const getSeniority = (data) => {
+    $("#select-seniority").innerHTML = "";
+    $("#select-seniority").innerHTML = 
+    `<option value="" selected disabled>Seniority</option>`;
+    let seniority = [];
+    data.forEach((job) => {
+        if (!seniority.includes(job.seniority)) {
+            seniority.push(job.seniority);
+        }
+    }) 
+    seniority.forEach((seniority) => {
+        $("#select-seniority").innerHTML += `<option value="${seniority}">${seniority}</option>`
+    })
+};
 
 
 
