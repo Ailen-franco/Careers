@@ -1,4 +1,91 @@
+:root {
+    --background-primary: #71717a;
+    --background-secondary: #ebebf9;
+    --background-tertiary: #52525b;
+    --font-color-primary: #ffffff;
+    --button-color-primary: #a2eb2d;
+    --button-color-active: #88ce16;
+    --button-color-hover: #b7f554;
+}
 
+body {
+    background-color: #ebebf9;
+}
+
+.form-select {
+    max-width: 250px;
+    margin: 30px 10px;
+}
+
+#btn-search, #btn-clear {
+    margin: 35px 5px;
+}
+
+/* MAIN */
+/* cards */
+.card {
+    margin: 10px;
+    min-height: 300px;
+    /* position: relative; */
+}
+
+.card-text {
+    text-align: justify;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+input, textarea, select, #btn-search, .nav-link, .btn-form, .card, .btn-details, .btn-edit {
+    border: var(--button-color-primary) 1px solid;
+    box-shadow: 1px 5px 10px -1px var(--button-color-primary);
+}
+
+.btn-details {
+    background-color: var(--background-tertiary);
+    border: var(--button-color-primary) 1px solid;
+    box-shadow: 1px 5px 10px -1px var(--button-color-primary);
+    /* position: absolute;
+    bottom: 0; */
+}
+
+input:hover, textarea:hover, button:hover, .card:hover {
+    background-color: var(--button-color-hover);
+    border: none;
+}
+
+.btn-details:hover {
+    background-color: var(--background-primary);
+}
+
+input:active, textarea:active, button:active, .btn-details:active {
+    background-color: var(--button-color-active);
+    border: none;
+}
+
+#btn-clear {
+    border: var(--background-primary) 1px solid;
+    box-shadow: 1px 5px 10px -1px var(--background-primary)
+}
+
+#btn-clear:hover {
+    background-color: var(--background-secondary);
+    border: none;
+    color: var(--background-tertiary);
+}
+
+#btn-clear:active {
+    background-color: var(--background-tertiary);
+    border: none;
+    color: var(--font-color-primary)
+}
+
+.badge {
+    background-color: var(--background-secondary);
+    color: var(--background-tertiary);
+    font-size: 0.7em;
+    width: 3px;
+}
   
   
   
