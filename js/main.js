@@ -155,5 +155,28 @@ const showForms = (formView) => {
     showView(formView);
 };
 
+// create new job function
+const createJob = () => {
+    let newJob = {
+        name: $("#job-title").value,
+        image: $("#job-image").value,
+        description: $("#job-description").value,
+        location: $("#job-location").value,
+        category: $("#job-category").value,
+        seniority: $("#job-seniority").value,
+        benefits: {
+            vacations: $("#job-vacations").value,
+            health_ensurance: $("#job-health").value,
+            internet_paid: $("#job-internet").checked,
+        },
+        salary: $("#job-salary").value,
+        long_term: $("#job-long_term").checked,
+        languages: $("#job-languages").value,
+    }
+    createPost(newJob)
+    console.log(newJob)
+    // return newJob
+    
+};
 
 window.onload = initialize(data)
