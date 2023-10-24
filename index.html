@@ -48,6 +48,46 @@
         <!-- cards -->
         <section id="cards-container" class="view container d-flex justify-content-center flex-wrap">
         </section>
+        <!-- Create job form -->
+        <section id="create-job" class="view visually-hidden">
+            <form class="container" style="width: 50%;">
+                <div class="title d-flex align-items flex-column mb-4">
+                    <label for="" class="fw-bold"> Job Title</label>
+                    <input type="text" id="job-title" class="mb-3 shadow-sm rounded">
+                </div>
+                <div class="d-flex justify-content-between mb-4">
+                    <div class="description d-flex align-items flex-column mb-4" style="width: 60%;">
+                        <label for="" class="fw-bold"> Description</label>
+                        <textarea name="text" id="job-description" cols="30" rows="10" class="mb-3 shadow-sm rounded"></textarea>
+                    </div>
+                    <div class="image-url d-flex align-items flex-column mb-4" style="width: 35%;">
+                        <label for="" class="fw-bold"> Image URL</label>
+                        <input type="text" class="input-tags mb-3 rounded" id="job-image" placeholder=" Insert URL image">
+                        <figure>
+                            <img src="img/roadie.png" alt="url image" id="image" style="width: 250px; height: 200px;">
+                        </figure>
+                    </div>
+                </div>
+                <div class="tags d-flex justify-content-between flex-wrap gap-0 column-gap-5 mb-4">   
+                    <div class="d-flex flex-column">
+                        <input type="text" id="job-location" class="input-tags mb-3 rounded" placeholder="Location">
+                        <input type="text" id="job-category" class="input-tags mb-3 rounded" placeholder="Seniority">
+                        <input type="text" id="job-seniority" class="input-tags mb-3 rounded" placeholder="Category">
+                    </div>
+                    <div class="d-flex flex-column">
+                        <input type="text" id="job-vacations" class="input-tags mb-3 rounded" placeholder="Vacations">
+                        <input type="text" id="job-health" class="input-tags mb-3 rounded" placeholder="Health Ensurance">
+                        <input type="text" id="job-internet" class="input-tags mb-3 rounded" placeholder="Internet Paid">
+                    </div>
+                    <div class="d-flex flex-column">
+                        <input type="text" id="job-salary" class="input-tags mb-3 rounded" placeholder="Salary">
+                        <input type="text" id="job-long_term" class="input-tags mb-3 rounded" placeholder="Long Term">
+                        <input type="text" id="job-languages" class="input-tags mb-3 rounded" placeholder="Languages">
+                    </div>                                     
+                </div>
+                <button type="button" id="submit-btn" class="btn-form text-center mt-2 p-2 mb-2 rounded" style="width: 5rem;">Submit</button>
+            </form>
+        </section>  
     </main>
     <script src="js/api.js"></script>
     <script src="js/main.js"></script>
