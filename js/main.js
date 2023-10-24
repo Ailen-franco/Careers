@@ -115,6 +115,16 @@ const filterSeniority = (data, range) => {
     return ranges
 };
 
+const filterCategory = (data, category) => {
+    const categories = [];
+    data.forEach((element) => {
+        if(element.category.includes(category)) {
+            categories.push(element)
+        }
+    });
+    return categories
+};
+
 
 
 
