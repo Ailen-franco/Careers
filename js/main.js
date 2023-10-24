@@ -34,3 +34,24 @@ renderJobs = (jobs) => {
 getJobs()
 
 let aux=getJobs();
+
+// initialize function
+const initialize = (data) => {
+    renderJobs(data)
+    getLocation(data);
+    getSeniority(data);
+    getCategory(data);
+    $("#btn-search").addEventListener("click",()=>renderJobs(applyFilters(data)))
+    $("#btn-clear").addEventListener("click",()=> renderJobs(data))   
+};
+
+
+
+
+
+
+
+
+
+
+window.onload = initialize(data)
