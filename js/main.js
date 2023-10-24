@@ -46,6 +46,22 @@ const initialize = (data) => {
 };
 
 
+// Get filters from API
+
+const getLocation = (data) => {
+    $("#select-location").innerHTML = "";
+    $("#select-location").innerHTML = 
+    `<option value="" selected disabled>Location</option>`;
+    const locations = [];
+    data.forEach((job) => {
+        if (!locations.includes(job.location)) {
+            locations.push(job.location);
+        }
+    }) 
+    locations.forEach((location) => {
+        $("#select-location").innerHTML += `<option value="${location}">${location}</option>`
+    })
+};
 
 
 
