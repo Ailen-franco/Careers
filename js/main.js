@@ -150,7 +150,10 @@ const applyFilters = (data) => {
     return filteredJobs
 };
 
-
+// form view
+const showForms = (formView) => {
+    showView(formView);
+};
 
 
 window.onload = initialize(data)
