@@ -94,6 +94,18 @@ const getCategory = (data) => {
 };
 
 
+// Filter search bar
+const filterLocation = (data, country) => {
+    const countries = [];
+    data.forEach((element) => {
+        if(element.location.includes(country)) {
+            countries.push(element)
+        }
+    });
+    return countries
+};
+
+
 
 
 window.onload = initialize(data)
