@@ -176,7 +176,12 @@ const createJob = () => {
     createPost(newJob)
     console.log(newJob)
     // return newJob
-    
 };
+
+// Events
+$("#btn-home").addEventListener("click", () => getJobs());
+$("#submit-btn").addEventListener("click", () => createJob());
+$("#btn-create-job").addEventListener("click", () => showForms("create-job"));
+
 
 window.onload = initialize(data)
