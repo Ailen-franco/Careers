@@ -183,5 +183,15 @@ $("#btn-home").addEventListener("click", () => getJobs());
 $("#submit-btn").addEventListener("click", () => createJob());
 $("#btn-create-job").addEventListener("click", () => showForms("create-job"));
 
+//function that shows the image from the url
+$("#job-image").addEventListener("keyup", () => {
+    const imageUrlInput = document.getElementById("job-image");
+    const imageElement = document.getElementById("image");
+    if (imageUrlInput.value===""){
+        imageElement.src="img/icon-image-png-0.jpg"
+    }else{
+        imageElement.src =imageUrlInput.value
+    }
+});
 
 window.onload = initialize(data)
