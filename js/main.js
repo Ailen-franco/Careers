@@ -1,11 +1,21 @@
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 
+// Show/Hide view function
 const showView = (view) => {
     $$(".view").forEach((view) => view.classList.add("visually-hidden"));
     $(`#${view}`).classList.remove("visually-hidden")
 };
 
+const hideView = (view) => {
+    $(`#${view}`).classList.add("visually-hidden");
+};
+
+const showSearch = (view) => {
+    $(`#${view}`).classList.remove("visually-hidden");
+};
+
+// Render cards jobs
 renderJobs = (jobs) => {
     $("#cards-container").innerHTML = "";
     if (jobs) {
@@ -23,31 +33,76 @@ renderJobs = (jobs) => {
                     <p class="card-text badge text-wrap text-center" style="width: 6rem;">${category}</p>
                     <p class="card-text badge text-wrap text-center" style="width: 6rem;">${seniority}</p>
                     </div>
-                    <button class="btn-details rounded text-white" style="margin: 8px;" onclick=getDescriptionById(${id})>See Details</button>
+                    <button id="btn-detail" class="btn-details rounded text-white" style="margin: 8px;" onclick=jobDetail(${id})>See Details</button>
                 </div>`
         }
     } else {
         showView("")
-    }
-    console.log(jobs)  
+    } 
 };
 getJobs()
 
-let aux=getJobs();
+// Render card detail
+const renderDetail = (data) => {
+    if (data) {
+        $("#card-detail").innerHTML = `
+            <div class="card" style="width: 25rem;">
+                <img src="${data.image}" class="card-img-top" alt="..."></img>
+                <div class="card-body">
+                    <h5 class="card-title">${data.name}</h5>
+                    <p class="card-description">${data.description}</p>
+                </div>
+                <div class="d-flex justify-content-around flex-wrap" style="margin: 6px;">
+                <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.location}</p>
+                <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.category}</p>
+                <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.seniority}</p>
+                </div>
+                <button id="btn-edit-job" class="btn-edit rounded text-white" style="margin: 8px;">Edit job</button>
+                <button id="btn-delete-job" class="btn-delete rounded text-white" style="margin: 8px;">Delete job</button>
+            </div>` 
+    }
+    showView("card-detail") 
+    hideView("search-bar")
+    $("#btn-edit-job").addEventListener("click", () => {
+        showView("edit-job");
+        fillEditForm(data);
+    })
+    $("#edit-btn").addEventListener("click", () => {
+        createEditJob(data.id)
+    })            
+};
 
-// initialize function
+const fillEditForm = (data) => {
+    $("#edit-title").value = data.name; 
+    $("#edit-image").value = data.image; 
+    $("#edit-description").value = data.description; 
+    $("#edit-location").value = data.location; 
+    $("#edit-category").value = data.category; 
+    $("#edit-seniority").value = data.seniority;
+    $("#edit-vacations").value = data.benefits.vacation;
+    $("#edit-health").value = data.benefits.health_ensurance;
+    $("#edit-internet").value = data.benefits.internet_paid;
+    $("#edit-salary").value = data.salary;
+    $("#edit-long_term").value = data.long_term;
+    $("#edit-languages").value = data.languages;
+};
+
+
+
+// Initialize function
 const initialize = (data) => {
-    renderJobs(data)
+    renderJobs(data);
+    // getDetail(data, jobId);
     getLocation(data);
     getSeniority(data);
     getCategory(data);
+    showSearch("search-bar")
     $("#btn-search").addEventListener("click",()=>renderJobs(applyFilters(data)))
-    $("#btn-clear").addEventListener("click",()=> renderJobs(data))   
+    $("#btn-clear").addEventListener("click",()=> renderJobs(data))
 };
 
 
 // Get filters from API
-
 const getLocation = (data) => {
     $("#select-location").innerHTML = "";
     $("#select-location").innerHTML = 
@@ -125,6 +180,7 @@ const filterCategory = (data, category) => {
     return categories
 };
 
+//Filter integrator function
 const applyFilters = (data) => {
     const location = $("#select-location").value;
     console.log(location)
@@ -150,10 +206,6 @@ const applyFilters = (data) => {
     return filteredJobs
 };
 
-// form view
-const showForms = (formView) => {
-    showView(formView);
-};
 
 // create new job function
 const createJob = () => {
@@ -174,24 +226,30 @@ const createJob = () => {
         languages: $("#job-languages").value,
     }
     createPost(newJob)
-    console.log(newJob)
-    // return newJob
 };
+
+
 
 // Events
 $("#btn-home").addEventListener("click", () => getJobs());
 $("#submit-btn").addEventListener("click", () => createJob());
-$("#btn-create-job").addEventListener("click", () => showForms("create-job"));
-
-//function that shows the image from the url
+$("#btn-create-job").addEventListener("click", () => {
+    showView("create-job");
+    hideView("search-bar");
+});
+//Event that shows the image from the url
 $("#job-image").addEventListener("keyup", () => {
-    const imageUrlInput = document.getElementById("job-image");
-    const imageElement = document.getElementById("image");
-    if (imageUrlInput.value===""){
+    const imageUrlInput = $("#job-image");
+    const imageElement = $("#image");
+    if (imageUrlInput.value === "") {
         imageElement.src="img/icon-image-png-0.jpg"
-    }else{
+    } else {
         imageElement.src =imageUrlInput.value
     }
 });
+
+
+
+
 
 window.onload = initialize(data)

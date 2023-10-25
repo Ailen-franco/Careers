@@ -6,6 +6,8 @@
     --button-color-primary: #a2eb2d;
     --button-color-active: #88ce16;
     --button-color-hover: #b7f554;
+    --button-color-delete: #e14949;
+    --button-delete-hover: #b64242;
 }
 
 body {
@@ -26,7 +28,6 @@ body {
 .card {
     margin: 10px;
     min-height: 300px;
-    /* position: relative; */
 }
 
 .card-text {
@@ -36,12 +37,16 @@ body {
     overflow: hidden;
 }
 
-input, textarea, select, #btn-search, .nav-link, .btn-form, .card, .btn-details, .btn-edit {
+.delete-card {
+    background-color: var(--button-color-hover);
+}
+
+input, textarea, select, #btn-search, .nav-link, .btn-form, .card, .btn-details, .btn-edit, .delete-card {
     border: var(--button-color-primary) 1px solid;
     box-shadow: 1px 5px 10px -1px var(--button-color-primary);
 }
 
-.btn-details {
+.btn-details, .btn-edit {
     background-color: var(--background-tertiary);
     border: var(--button-color-primary) 1px solid;
     box-shadow: 1px 5px 10px -1px var(--button-color-primary);
@@ -49,32 +54,40 @@ input, textarea, select, #btn-search, .nav-link, .btn-form, .card, .btn-details,
     bottom: 0; */
 }
 
+.btn-delete, .btn-delete-cards {
+    background-color: var(--button-color-delete);
+}
+
+.btn-delete:hover, .btn-delete-cards:hover {
+    background-color: var(--button-delete-hover);
+}
+
 input:hover, textarea:hover, button:hover, .card:hover {
     background-color: var(--button-color-hover);
     border: none;
 }
 
-.btn-details:hover {
+.btn-details:hover .btn-edit:hover {
     background-color: var(--background-primary);
 }
 
-input:active, textarea:active, button:active, .btn-details:active {
+input:active, textarea:active, button:active, .btn-details:active, .btn-edit-active {
     background-color: var(--button-color-active);
     border: none;
 }
 
-#btn-clear {
+#btn-clear, .btn-cancel {
     border: var(--background-primary) 1px solid;
     box-shadow: 1px 5px 10px -1px var(--background-primary)
 }
 
-#btn-clear:hover {
+#btn-clear:hover, .btn-cancel:hover {
     background-color: var(--background-secondary);
     border: none;
     color: var(--background-tertiary);
 }
 
-#btn-clear:active {
+#btn-clear:active, .btn-cancel:active {
     background-color: var(--background-tertiary);
     border: none;
     color: var(--font-color-primary)
