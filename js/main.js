@@ -87,6 +87,26 @@ const fillEditForm = (data) => {
     $("#edit-languages").value = data.languages;
 };
 
+// Create edit job function
+const createEditJob = (id) => {
+    let newEditJob = {
+        name: $("#edit-title").value,
+        image: $("#edit-image").value,
+        description: $("#edit-description").value,
+        location: $("#edit-location").value,
+        category: $("#edit-category").value,
+        seniority: $("#edit-seniority").value,
+        benefits: {
+            vacations: $("#edit-vacations").value,
+            health_ensurance: $("#edit-health").value,
+            internet_paid: $("#edit-internet").value,
+        },
+        salary: $("#edit-salary").value,
+        long_term: $("#edit-long_term").value,
+        languages: $("#edit-languages").value,
+    }
+    createPut(newEditJob, id)
+};
 
 
 // Initialize function
