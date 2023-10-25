@@ -33,4 +33,14 @@ const jobDetail = async(id) => {
     // editValues(data); 
 }
 
-
+// PUT function
+const createPut = async (data, id) => {
+    showView("spinner");
+    console.log(data);
+    await fetch(`https://6524bd60ea560a22a4ea0c28.mockapi.io/api/jobs/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+    });
+    getJobs();
+};
