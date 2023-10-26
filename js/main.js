@@ -71,7 +71,6 @@ const renderDetail = (data) => {
     })
     
     if((!editButtonListenerAdded)) {
-        console.log("1er ejecucion")
         $("#edit-btn").addEventListener("click", () => {
             createEditJob(data.id)
             editButtonListenerAdded = true;
@@ -82,61 +81,10 @@ const renderDetail = (data) => {
         $("#btn-delete-card").addEventListener("click", () => {
             deleteJob(data.id);
         })
-    } else{
-        console.log("ya existe")
     }
     $("#btn-delete-job").addEventListener("click", () => {
         showView("delete-card-msg");
     })
-};
-
-const fillEditForm = (data) => {
-    $("#edit-title").value = data.name; 
-    $("#edit-image").value = data.image; 
-    $("#edit-description").value = data.description; 
-    $("#edit-location").value = data.location; 
-    $("#edit-category").value = data.category; 
-    $("#edit-seniority").value = data.seniority;
-    $("#edit-vacations").value = data.benefits.vacation;
-    $("#edit-health").value = data.benefits.health_ensurance;
-    $("#edit-internet").value = data.benefits.internet_paid;
-    $("#edit-salary").value = data.salary;
-    $("#edit-long_term").value = data.long_term;
-    $("#edit-languages").value = data.languages;
-};
-
-// Create edit job function
-const createEditJob = (id) => {
-    let newEditJob = {
-        name: $("#edit-title").value,
-        image: $("#edit-image").value,
-        description: $("#edit-description").value,
-        location: $("#edit-location").value,
-        category: $("#edit-category").value,
-        seniority: $("#edit-seniority").value,
-        benefits: {
-            vacations: $("#edit-vacations").value,
-            health_ensurance: $("#edit-health").value,
-            internet_paid: $("#edit-internet").value,
-        },
-        salary: $("#edit-salary").value,
-        long_term: $("#edit-long_term").value,
-        languages: $("#edit-languages").value,
-    }
-    createPut(newEditJob, id)
-};
-
-
-// Initialize function
-const initialize = (data) => {
-    renderJobs(data);
-    // getDetail(data, jobId);
-    getLocation(data);
-    getSeniority(data);
-    getCategory(data);
-    showSearch("search-bar")
-    $("#btn-search").addEventListener("click",()=>renderJobs(applyFilters(data)))
-    $("#btn-clear").addEventListener("click",()=> renderJobs(data))
 };
 
 
@@ -221,35 +169,34 @@ const filterCategory = (data, category) => {
 //Filter integrator function
 const applyFilters = (data) => {
     const location = $("#select-location").value;
-    console.log(location)
     const seniority = $("#select-seniority").value;
-    console.log(seniority)
-    const category = $("#select-category").value;
-    console.log(category)
+    const category = $("#select-category").value;  
     let filteredJobs = data
     
-
     if (location !== "") {
-        console.log("1")
         filteredJobs = filterLocation(filteredJobs, location)
     } 
     if (seniority !== "") {
-        console.log("2")
         filteredJobs = filterSeniority(filteredJobs, seniority)
     }
     if (category !== "") {
-        console.log("3")
         filteredJobs = filterCategory(filteredJobs, category)
     }
     return filteredJobs
 };
 
-
 // create new job function
 const createJob = () => {
+    let img 
+    if($("#job-image").value===""){
+        img = "https://static.vecteezy.com/system/resources/previews/017/113/346/non_2x/employment-job-news-icon-vector.jpg"
+    } else{
+        img = $("#job-image").value
+    }
+
     let newJob = {
         name: $("#job-title").value,
-        image: $("#job-image").value,
+        image: img,
         description: $("#job-description").value,
         location: $("#job-location").value,
         category: $("#job-category").value,
@@ -257,16 +204,75 @@ const createJob = () => {
         benefits: {
             vacations: $("#job-vacations").value,
             health_ensurance: $("#job-health").value,
-            internet_paid: $("#job-internet").checked,
+            internet_paid: $("#job-internet").value,
         },
         salary: $("#job-salary").value,
-        long_term: $("#job-long_term").checked,
+        long_term: $("#job-long_term").value,
         languages: $("#job-languages").value,
     }
     createPost(newJob)
+    clearForm()
 };
 
+// Function to fill the inputs with the data of the selected card
+const fillEditForm = (data) => {
+    $("#edit-title").value = data.name; 
+    $("#edit-image").value = data.image; 
+    $("#image-edit").src = data.image;
+    $("#edit-description").value = data.description; 
+    $("#edit-location").value = data.location; 
+    $("#edit-category").value = data.category; 
+    $("#edit-seniority").value = data.seniority;
+    $("#edit-vacations").value = data.benefits.vacations;
+    $("#edit-health").value = data.benefits.health_ensurance;
+    $("#edit-internet").value = data.benefits.internet_paid;
+    $("#edit-salary").value = data.salary;
+    $("#edit-long_term").value = data.long_term;
+    $("#edit-languages").value = data.languages;
+};
 
+// Create edit job function
+const createEditJob = (id) => {
+    let img 
+    if($("#edit-image").value===""){
+        img = "https://static.vecteezy.com/system/resources/previews/017/113/346/non_2x/employment-job-news-icon-vector.jpg"
+    } else{
+        img = $("#edit-image").value
+    }
+    let newEditJob = {
+        name: $("#edit-title").value,
+        image: img,
+        description: $("#edit-description").value,
+        location: $("#edit-location").value,
+        category: $("#edit-category").value,
+        seniority: $("#edit-seniority").value,
+        benefits: {
+            vacations: $("#edit-vacations").value,
+            health_ensurance: $("#edit-health").value,
+            internet_paid: $("#edit-internet").value,
+        },
+        salary: $("#edit-salary").value,
+        long_term: $("#edit-long_term").value,
+        languages: $("#edit-languages").value,
+    }
+    createPut(newEditJob, id)
+};
+
+// Clear form inputs
+const clearForm = () => {
+    $("#job-title").value = "",
+    $("#job-image").value = "",
+    $("#job-description").value = "",
+    $("#job-location").value = "",
+    $("#job-category").value = "",
+    $("#job-seniority").value = "",
+    $("#job-vacations").value = "",
+    $("#job-health").value = "",
+    $("#job-internet").value = "",
+    $("#job-salary").value = "",
+    $("#job-long_term").value = "",
+    $("#job-languages").value = "";
+}; 
 
 /// Events
 let editButtonListenerAdded = false;
@@ -277,6 +283,7 @@ $("#btn-create-job").addEventListener("click", () => {
     hideView("search-bar");
 });
 $("#btn-cancel-card").addEventListener("click", () => getJobs());
+
 //Event that shows the image from the url
 $("#job-image").addEventListener("keyup", () => {
     const imageUrlInput = $("#job-image");
@@ -284,12 +291,37 @@ $("#job-image").addEventListener("keyup", () => {
     if (imageUrlInput.value === "") {
         imageElement.src="img/icon-image-png-0.jpg"
     } else {
-        imageElement.src =imageUrlInput.value
+        imageElement.src = imageUrlInput.value
+    }
+});
+
+//Event that shows the image edit from the url
+$("#edit-image").addEventListener("keyup", () => {
+    const imageUrlInput = $("#edit-image");
+    const imageElement = $("#image-edit");
+    if (imageUrlInput.value === "") {
+        imageElement.src="img/icon-image-png-0.jpg"
+    } else {
+        imageElement.src = imageUrlInput.value
     }
 });
 
 
-
+// Initialize function
+const initialize = (data) => {
+    renderJobs(data);
+    getLocation(data);
+    getSeniority(data);
+    getCategory(data);
+    showSearch("search-bar");
+    $("#btn-search").addEventListener("click", () => renderJobs(applyFilters(data)));
+    $("#btn-clear").addEventListener("click", () => {
+        renderJobs(data)
+        $("#select-location").selectedIndex = 0;
+        $("#select-seniority").selectedIndex = 0;
+        $("#select-category").selectedIndex = 0;
+    });
+};
 
 
 window.onload = initialize(data)
