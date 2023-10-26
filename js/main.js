@@ -23,7 +23,7 @@ renderJobs = (jobs) => {
         for (let { name, image, description, location, category, seniority, id} of jobs) {
             $("#cards-container").innerHTML += `
                 <div class="card" style="width: 14rem;">
-                    <img src="${image}" class="card-img-top" alt="..."></img>
+                    <img src="${image}" class="card-img-top img-fluid" alt="cards jobs" style="width: 14 rem; height: 10rem;"></img>
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
                         <p class="card-text">${description}</p>
@@ -46,19 +46,21 @@ getJobs()
 const renderDetail = (data) => {
     if (data) {
         $("#card-detail").innerHTML = `
-            <div class="card" style="width: 25rem;">
-                <img src="${data.image}" class="card-img-top" alt="..."></img>
+            <div class="card" style="width: 30rem;">
+                <img src="${data.image}" class="card-img-top" alt="cards job" style="width: 30rem rem; max-height: 20rem;"></img>
                 <div class="card-body">
                     <h5 class="card-title">${data.name}</h5>
                     <p class="card-description">${data.description}</p>
                 </div>
                 <div class="d-flex justify-content-around flex-wrap" style="margin: 6px;">
-                <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.location}</p>
-                <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.category}</p>
-                <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.seniority}</p>
+                    <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.location}</p>
+                    <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.category}</p>
+                    <p class="card-text badge text-wrap text-center" style="width: 6rem;">${data.seniority}</p>
                 </div>
-                <button id="btn-edit-job" class="btn-edit rounded text-white" style="margin: 8px;">Edit job</button>
-                <button id="btn-delete-job" class="btn-delete rounded text-white" style="margin: 8px;">Delete job</button>
+                <div class="d-flex justify-content-center">
+                    <button id="btn-edit-job" class="btn-edit rounded text-white" style="margin: 8px; width: 10rem">Edit job</button>
+                    <button id="btn-delete-job" class="btn-delete rounded text-white" style="margin: 8px; width: 10rem">Delete job</button>
+                </div>            
             </div>` 
     }
     showView("card-detail") 
@@ -67,9 +69,25 @@ const renderDetail = (data) => {
         showView("edit-job");
         fillEditForm(data);
     })
-    $("#edit-btn").addEventListener("click", () => {
-        createEditJob(data.id)
-    })            
+    
+    if((!editButtonListenerAdded)) {
+        console.log("1er ejecucion")
+        $("#edit-btn").addEventListener("click", () => {
+            createEditJob(data.id)
+            editButtonListenerAdded = true;
+        })
+        $("#btn-delete-job").addEventListener("click", () => {
+            showView("delete-card-msg");
+        })
+        $("#btn-delete-card").addEventListener("click", () => {
+            deleteJob(data.id);
+        })
+    } else{
+        console.log("ya existe")
+    }
+    $("#btn-delete-job").addEventListener("click", () => {
+        showView("delete-card-msg");
+    })
 };
 
 const fillEditForm = (data) => {
@@ -250,13 +268,15 @@ const createJob = () => {
 
 
 
-// Events
+/// Events
+let editButtonListenerAdded = false;
 $("#btn-home").addEventListener("click", () => getJobs());
 $("#submit-btn").addEventListener("click", () => createJob());
 $("#btn-create-job").addEventListener("click", () => {
     showView("create-job");
     hideView("search-bar");
 });
+$("#btn-cancel-card").addEventListener("click", () => getJobs());
 //Event that shows the image from the url
 $("#job-image").addEventListener("keyup", () => {
     const imageUrlInput = $("#job-image");

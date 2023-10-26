@@ -11,7 +11,7 @@ getJobs = async() => {
     return await data
 };
 
-//Create Post
+// POST function
 const createPost = async(newJob) => {
     showView("spinner");
     await fetch("https://6524bd60ea560a22a4ea0c28.mockapi.io/api/jobs/", {
@@ -43,4 +43,12 @@ const createPut = async (data, id) => {
         headers: { "Content-Type": "application/json; charset=utf-8" },
     });
     getJobs();
+};
+
+// DELETE function
+const deleteJob = async(id) => {
+     await fetch(`https://6524bd60ea560a22a4ea0c28.mockapi.io/api/jobs/${id}`, {
+        method: 'DELETE',
+    });
+    getJobs()
 };

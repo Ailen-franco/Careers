@@ -15,17 +15,12 @@
 <body>
     <!-- header -->
     <header>
-        <nav class="navbar navbar-expand-lg text-bg-secondary">
+        <nav class="navbar navbar-expand text-bg-secondary">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="#">Careers</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <button class="nav-link active text-white-50 rounded" id="btn-home">Home</button>
-                        <button class="nav-link text-white-50 rounded" id="btn-create-job">Create Job</button>
-                    </div>
+                <div class="collapse navbar-nav navbar-collapse" id="navbarNavAltMarkup">
+                    <button class="nav-link active text-white-50 rounded" id="btn-home">Home</button>
+                    <button class="nav-link text-white-50 rounded" id="btn-create-job">Create Job</button>                  
                 </div>
             </div>
         </nav>
@@ -51,29 +46,29 @@
         <section id="cards-container" class="view container d-flex justify-content-center flex-wrap">
         </section>
         <!-- card detail-->
-        <section id="card-detail" class="view container">
+        <section id="card-detail" class="view container d-flex justify-content-center">
         </section>
         <!-- Create job form -->
         <section id="create-job" class="view visually-hidden mt-5">
-            <form class="container" style="width: 50%;">
+            <form class="container" style="width: 60%;">
                 <div class="title d-flex align-items flex-column mb-4">
                     <label for="" class="fw-bold"> Job Title</label>
                     <input type="text" id="job-title" class="mb-3 shadow-sm rounded">
                 </div>
-                <div class="d-flex justify-content-between mb-4">
-                    <div class="description d-flex align-items flex-column mb-4" style="width: 60%;">
+                <div class="container-fluid d-flex flex-xl-row justify-content-xl-between flex-column gap-3 mb-4" style="width: 100%;">
+                    <div class="description d-flex align-items flex-column mb-4" style="width: 100%;">
                         <label for="" class="fw-bold"> Description</label>
                         <textarea name="text" id="job-description" cols="30" rows="10" class="mb-3 shadow-sm rounded"></textarea>
                     </div>
-                    <div class="image-url d-flex align-items flex-column mb-4" style="width: 35%;">
+                    <div class="image-url d-flex align-items flex-column mb-4" style="width: 100%;">
                         <label for="" class="fw-bold"> Image URL</label>
                         <input type="text" class="input-tags mb-3 rounded" id="job-image" placeholder=" Insert URL image">
-                        <figure>
-                            <img src="img/icon-image-png-0.jpg" alt="url image" id="image" style="width: 250px; height: 200px;">
+                        <figure class="d-flex justify-content-center">
+                            <img src="img/icon-image-png-0.jpg" alt="url image" id="image" style="width: 80%; height: 90%;">
                         </figure>
                     </div>
                 </div>
-                <div class="tags d-flex justify-content-between flex-wrap gap-0 column-gap-5 mb-4">   
+                <div class="container-fluid d-flex flex-xl-row justify-content-xl-between flex-column gap-3 mb-4">   
                     <div class="d-flex flex-column">
                         <input type="text" id="job-location" class="input-tags mb-3 rounded" placeholder="Location">
                         <input type="text" id="job-category" class="input-tags mb-3 rounded" placeholder="Seniority">
@@ -100,17 +95,20 @@
                     <label for="" class="fw-bold"> Job Title</label>
                     <input type="text" id="edit-title" class="mb-3 shadow-sm rounded">
                 </div>
-                <div class="d-flex justify-content-between mb-4">
-                    <div class="description d-flex align-items flex-column mb-4" style="width: 60%;">
+                <div class="container-fluid d-flex flex-xl-row justify-content-xl-between flex-column gap-3 mb-4" style="width: 100%;">
+                    <div class="description d-flex align-items flex-column mb-4" style="width: 100%;">
                         <label for="" class="fw-bold"> Description</label>
                         <textarea name="text" id="edit-description" cols="30" rows="10" class="mb-3 shadow-sm rounded"></textarea>
                     </div>
-                    <div class="image-url d-flex align-items flex-column mb-4" style="width: 35%;">
+                    <div class="image-url d-flex align-items flex-column mb-4" style="width: 100%;">
                         <label for="" class="fw-bold"> Image URL</label>
                         <input type="text" class="input-tags mb-3 rounded" id="edit-image" placeholder=" Insert URL image">
+                        <figure class="d-flex justify-content-center">
+                            <img src="img/icon-image-png-0.jpg" alt="url image" id="image-edit" style="width: 80%; height: 90%;">
+                        </figure>
                     </div>                   
                 </div>
-                <div class="tags d-flex justify-content-between flex-wrap gap-0 column-gap-5 mb-4">   
+                <div class="container-fluid d-flex flex-xl-row justify-content-xl-between flex-column gap-3 mb-4">   
                     <div class="d-flex flex-column">
                         <input type="text" id="edit-location" class="input-tags mb-3 rounded" placeholder="Location">
                         <input type="text" id="edit-seniority" class="input-tags mb-3 rounded" placeholder="Seniority">
@@ -131,11 +129,11 @@
             </form>
         </section>
         <!-- Delete card -->
-        <section class="delete-card container text-center rounded view visually-hidden" style="width: 30%;">
+        <section id="delete-card-msg"class="delete-card container text-center rounded view visually-hidden mt-4" style="width: 30%;">
             <p class="fw-bold">Are you sure to delete this job?</p>
             <button id="btn-delete-card" class="btn-delete-cards rounded text-white" style="margin: 8px;">Delete job</button>
             <button id="btn-cancel-card" class="btn-cancel rounded text-black" style="margin: 8px;">Cancel</button>
-        </section>  
+        </section> 
     </main>
     <script src="js/api.js"></script>
     <script src="js/main.js"></script>
